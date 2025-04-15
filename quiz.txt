@@ -1,0 +1,10 @@
+What is the chemical symbol for water?,H2O,O2,CO2,H2,1
+What gas do plants absorb from the atmosphere?,Oxygen,Hydrogen,Nitrogen,Carbon Dioxide,4
+Which continent is the largest by land area?,Africa,Asia,Europe,Australia,2
+How many legs does a spider have?,6,8,10,12,2
+What is the main source of energy for the Earth?,Moon,Stars,Sun,Wind,3
+Who wrote the play "Romeo and Juliet"?,Charles Dickens,Mark Twain,William Shakespeare,Jane Austen,3
+Which organ pumps blood throughout the body?,Lungs,Brain,Heart,Liver,3
+What do bees collect from flowers?,Dust,Pollen,Nectar,Seeds,3
+How many days are in a leap year?,365,360,366,364,3
+What is the freezing point of water in Celsius?,0,32,100,-1,1
