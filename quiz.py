@@ -45,16 +45,26 @@ def draw():
     marquee_message = "welcome to quizmaster"
     screen.draw.textbox(marquee_message, marquee_box, color = "black")
     screen.draw.textbox(question[0], question_box, color = "white")
+    screen.draw.textbox(str(timer), timer_box, color = "white", shadow = (0.5,0.5), scolor = "gray")
+    screen.draw.textbox("skip", skip_box, color = "white", angle = 90)
 # for i,v in enumerate(answers):
 #    screen.draw.textbox(question[i+1],v,color = "white")
     for i in range(len(answers)):
-      screen.draw.textbox(question[i+1],answers[i],color = "white")       
+      screen.draw.textbox(question[i+1],answers[i],color = "white")    
+      
 def update():
     
     marquee_box.x -= 2
     if marquee_box.right < 0:
         marquee_box.left = WIDTH
 
+def skip():
+   global question, timer
+   if questions and not game_over:
+      question = read_next_question()
+      timer = 10
+   else:
+      game_over = True
 
 def read_file():
    global question_index, question_count, questions
@@ -70,10 +80,48 @@ def read_next_question():
     question_index +=1
     return(questions.pop(0).split(","))
 
+def update_timer():
+   global timer, game_over
+   if timer:
+      timer -= 1
+   else:
+      game_over = True
+def on_mouse_down(pos):
+   global question, timer,score
+   index = 1
+   for i in answers:
+      if i.collidepoint(pos):
+         if index is int(question[5]):
+            score += 1
+            if questions:
+               question = read_next_question()
+               timer = 10
+            else:
+               gameOver()
+         else:
+            gameOver()
+      index += 1
+   if skip_box.collidepoint(pos):
+      if questions and not game_over:
+         question = read_next_question()
+         timer = 10
+      else:
+         gameOver()
 
+def gameOver():
+   global timer,question, game_over
+   message = f"game over\n you scored {score} out of {question_count}"
+   question = [message,"-","-","-","-", 0]
+   timer = 0
+   game_over = True
+
+   
 read_file()
 question = read_next_question()
 print(question)
+clock.schedule_interval(update_timer,1)
+
+
 
 
 
